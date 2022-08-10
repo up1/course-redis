@@ -7,6 +7,7 @@ Required minimum nodes = 6 nodes (production)
 
 ## 1. Start Redis Node with Cluster mode
 ```
+$cd cluster
 $docker-compose up -d redis1
 $docker-compose up -d redis2
 $docker-compose up -d redis3
