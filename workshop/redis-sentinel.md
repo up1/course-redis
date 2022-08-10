@@ -2,8 +2,8 @@
 Designed for high availability without Cluster
 
 ## Node roles
-* Master node for write data
-* Slave node for read data
+* `Master` node for write data
+* `Slave` node for read data
 
 ## Responsesibiliries
 * Monitoring for (Master and Slave nodes)
