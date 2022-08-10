@@ -1,5 +1,5 @@
 # [Redis Sentinel](https://redis.io/topics/sentinel)
-Designed for high availability
+Designed for high availability without Cluster
 
 ## Node roles
 * Master node for write data
