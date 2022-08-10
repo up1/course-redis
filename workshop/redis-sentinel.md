@@ -40,12 +40,12 @@ workshop_slave_1      docker-entrypoint.sh redis ...   Up      6379/tcp
 
 ## Scale number of sentinel nodes
 ```
-$docker-compose -f docker-compose.sentinel.yml scale sentinel=3
+$docker-compose -f docker-compose.sentinel.yml up -d --scale sentinel=3
 ```
 
 ## Scale number of slave nodes
 ```
-$docker-compose -f docker-compose.sentinel.yml scale slave=3
+$docker-compose -f docker-compose.sentinel.yml up -d --scale slave=3
 ```
 
 ## Get information of sentinel
