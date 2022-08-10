@@ -8,4 +8,4 @@
 ## [Redis monitoring](/workshop/redis-monitoring.md)
 * Prometheus
   * Redis exporter
-* Grafan=
+* Grafana
