@@ -14,12 +14,10 @@ $docker-compose up -d redis3
 
 $docker-compose ps
 
-      Name                    Command               State   Ports
------------------------------------------------------------------
-cluster_redis1_1   docker-entrypoint.sh redis ...   Up
-cluster_redis2_1   docker-entrypoint.sh redis ...   Up
-cluster_redis3_1   docker-entrypoint.sh redis ...   Up
-
+NAME                      COMMAND                  SERVICE             STATUS              PORTS
+cluster-redis1-1          "docker-entrypoint.s…"   redis1              running             
+cluster-redis2-1          "docker-entrypoint.s…"   redis2              running             
+cluster-redis3-1          "docker-entrypoint.s…"   redis3              running
 ```
 
 ## 2. Create cluster with replication = 0
@@ -59,17 +57,16 @@ redis-cluster_1  | cluster_redis-cluster_1 exited with code 0
 
 $docker-compose ps
 
-        Name                        Command               State   Ports
-------------------------------------------------------------------------
-cluster_redis-cluster_1   docker-entrypoint.sh bash  ...   Exit 0
-cluster_redis1_1          docker-entrypoint.sh redis ...   Up
-cluster_redis2_1          docker-entrypoint.sh redis ...   Up
-cluster_redis3_1          docker-entrypoint.sh redis ...   Up
+NAME                      COMMAND                  SERVICE             STATUS              PORTS
+cluster-redis-cluster-1   "docker-entrypoint.s…"   redis-cluster       exited (0)          
+cluster-redis1-1          "docker-entrypoint.s…"   redis1              running             
+cluster-redis2-1          "docker-entrypoint.s…"   redis2              running             
+cluster-redis3-1          "docker-entrypoint.s…"   redis3              running
 ```
 
 Check your cluster on node 1
 ```
-$docker container exec -it cluster_redis1_1 bash
+$docker container exec -it cluster-redis1-1 bash
 #redis-cli -c -p 7000
 >set name hello
 
