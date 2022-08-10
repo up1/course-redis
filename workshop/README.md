@@ -58,4 +58,11 @@ $docker container exec -it demo01 bash
 
 ```
 
+### [Redis benchmark]( https://redis.io/docs/reference/optimization/benchmarks/)
+```
+$redis-benchmark
+$redis-benchmark -q -n 100000
+$redis-benchmark -t set,lpush -n 100000 -q
+```
+
 
