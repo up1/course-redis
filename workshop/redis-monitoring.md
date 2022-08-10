@@ -34,7 +34,7 @@ Tips
 * Set expirations for keys
 * Evict keys (config set maxmemory value)
   * value = % of available memory
-  * config `maxmemory-policy` in [redis.conf](https://github.com/up1/course-imc-devops-5-days/blob/main/database/workshop/example-redis.conf)
+  * config `maxmemory-policy` in [redis.conf](https://github.com/up1/course-redis/blob/main/workshop/example-redis.conf)
 
 ```
 >info stats
