@@ -37,6 +37,10 @@
   * Diagnosing latency issues
   * Latency monitoring
   * Memory optimization
+    * Data Eviction Strategies
+      * Least Recently Used (LRU)
+      * Least Frequently Used (LFU)
+      * Random 
 * [Redis monitoring](/workshop/redis-monitoring.md)
   * Prometheus
     * Redis exporter
