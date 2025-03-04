@@ -8,8 +8,11 @@ Required  1 nodes
 
 ```
 # Create container from Redis image
-$docker image pull redis:6
-$docker container run --name demo01 -d redis:6
+$docker image pull redis:7
+
+
+# Run container
+$docker container run --name demo01 -d redis:7
 
 $docker container ps
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES
@@ -27,7 +30,7 @@ $docker container exec -it demo01 bash
 >keys *
 ```
 
-[String opertation](https://redis.io/commands#string)
+[String opertation](https://redis.io/docs/latest/commands/?group=string)
 ```
 >set name pui
 >get name
@@ -37,7 +40,7 @@ $docker container exec -it demo01 bash
 >INCR counter
 >INCRBY counter 5
 ```
-[List operation](https://redis.io/commands#list)
+[List operation](https://redis.io/docs/latest/commands/?group=list)
 ```
 >lpush numbers 1
 >lpush numbers 2
@@ -46,7 +49,7 @@ $docker container exec -it demo01 bash
 
 >LRANGE numbers 0 -1
 ```
-[Hash operation](https://redis.io/commands#hash)
+[Hash operation](https://redis.io/docs/latest/commands/?group=hash)
 ```
 >HSET user1 id 1
 >HSET user1 name "pui"
@@ -55,10 +58,15 @@ $docker container exec -it demo01 bash
 >HGETALL user1
 >HKEYS user1
 >HGET user1 name
-
 ```
 
-### [Redis benchmark]( https://redis.io/docs/reference/optimization/benchmarks/)
+Operations
+```
+>FLUSHALL
+>INFO
+```
+
+### [Redis benchmark](https://redis.io/docs/latest/operate/oss_and_stack/management/optimization/benchmarks/)
 ```
 $redis-benchmark
 $redis-benchmark -q -n 100000
