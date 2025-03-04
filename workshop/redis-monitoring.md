@@ -99,9 +99,9 @@ Tips
 # 2. Redis Exporter
 
 ```
-$docker-compose -f docker-compose-single.yml build
-$docker-compose -f docker-compose-single.yml up -d
-$docker-compose -f docker-compose-single.yml ps
+$docker compose -f docker-compose.single.yml build
+$docker compose -f docker-compose.single.yml up -d
+$docker compose -f docker-compose.single.yml ps
 
           Name                         Command               State           Ports
 -------------------------------------------------------------------------------------------
@@ -116,5 +116,5 @@ List of URL
 
 Stop and removes
 ```
-$docker-compose -f docker-compose-single.yml down
+$docker compose -f docker-compose.single.yml down
 ```
