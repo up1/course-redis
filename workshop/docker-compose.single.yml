@@ -1,7 +1,6 @@
-version: "3.9"
 services:
   redis1:
-    image: redis:6
+    image: redis:7
 
   redis-exporter:
     image: oliver006/redis_exporter
