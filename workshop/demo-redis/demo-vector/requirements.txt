@@ -1,0 +1,4 @@
+redis 
+sentence_transformers
+pandas
+fastparquet
