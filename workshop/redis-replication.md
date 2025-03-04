@@ -26,7 +26,6 @@ workshop-master-1   redis:7   "docker-entrypoint.s…"   master    32 seconds ag
 workshop-slave-1    redis:7   "docker-entrypoint.s…"   slave     32 seconds ago   Up 29 seconds   6379/tcp
 workshop-slave-2    redis:7   "docker-entrypoint.s…"   slave     9 seconds ago    Up 2 seconds    6379/tcp
 workshop-slave-3    redis:7   "docker-entrypoint.s…"   slave     9 seconds ago    Up 3 seconds    6379/tcp
-
 ```
 
 ## Working with redis
@@ -39,4 +38,9 @@ $docker compose -f docker-compose.replication.yml exec -T master redis-cli -p 63
 2. Read to slave node
 ```
 $docker compose -f docker-compose.replication.yml exec -T slave redis-cli -p 6379 GET counter
+```
+
+## Delete all resources
+```
+$docker compose -f docker-compose.replication.yml down
 ```
