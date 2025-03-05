@@ -20,10 +20,16 @@ $docker container exec -it demo01 bash
 # Default configurations
 >redis-cli
 >config get *
+>info
 ```
 
 ## 2. Start with custom configurations
 * Example with tcp-keepalive
+* Max memory
+* Max memory policy
+* Persistence
+  * RDB
+  * AOF
 
 ### Custom configuration
 ```
@@ -32,14 +38,15 @@ $docker container rm demo01
 
 $docker container run --name demo01 -d \
   -v $(pwd)/redis.conf:/usr/local/etc/redis/redis.conf \
-  redis:6 redis-server /usr/local/etc/redis/redis.conf
+  redis:7 redis-server /usr/local/etc/redis/redis.conf
 
 $docker container ps
 
 $docker container exec -it demo01 bash
 >redis-cli
 >config get tcp*
-
+>config get maxmemory*
+>info memory
 ```
 
 ## Compare performance of TCP-keepalive
