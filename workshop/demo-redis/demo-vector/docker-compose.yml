@@ -1,0 +1,19 @@
+services:
+  redis:
+    image: redis/redis-stack
+  embedding:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - REDIS_HOST=redis
+    command: ["python", "step_3.py"]
+  
+  search:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - REDIS_HOST=redis
+    command: ["python", "step_4.py"]
+    
