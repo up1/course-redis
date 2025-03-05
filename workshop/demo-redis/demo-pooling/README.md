@@ -1,6 +1,11 @@
 # Connection pool with redis
 
-## Run
+## Start redis
+```
+$docker container run -d --name redis -p 6379:6379 -p 8001:8001 redis/redis-stack
+```
+
+## Run server
 ```
 $go mod tidy
 $go run main.go

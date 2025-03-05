@@ -7,6 +7,8 @@ import (
 	"encoding/json"
 	"net/http/httptest"
 	"testing"
+
+	"github.com/go-faker/faker/v4"
 )
 
 func BenchmarkSetKey(b *testing.B) {
@@ -14,8 +16,8 @@ func BenchmarkSetKey(b *testing.B) {
 	handler := handlers.NewHandler(redisService)
 
 	data := handlers.KeyValue{
-		Key:   "test_key",
-		Value: "test_value",
+		Key:   faker.Username(),
+		Value: faker.Name(),
 	}
 	jsonData, _ := json.Marshal(data)
 
