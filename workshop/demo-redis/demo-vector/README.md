@@ -1,5 +1,10 @@
+# Workshop :: Vector database with Redis
 
-
+## Step 0 :: Create virtual environment
+```
+$python -m venv ./demo/venv
+$source ./demo/venv/bin/activate
+```
 
 ## Step 1 :: Install dependencies
 ```
