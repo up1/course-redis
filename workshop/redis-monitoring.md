@@ -114,6 +114,13 @@ workshop_redis1_1           docker-entrypoint.sh redis ...   Up      6379/tcp
 List of URL
 * Redis exporter = http://server-ip:9121
 * Prometheus server = http://server-ip:9090
+* Grafana server = http://server-ip:3000
+  * Login
+    * user=admin
+    * password=admin
+  * Add new datasource => Prometheus
+    * url=http://prometheus:9090
+  * Import dashboard with id=763
 
 Stop and removes
 ```
