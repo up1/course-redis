@@ -21,6 +21,11 @@ $python step_2.py
 $python step_3.py
 ```
 
+## Step 5 :: Search data in Redis
+```
+$python step_4.py
+```
+
 ### Reference websites
 * [Redis vector database](https://redis.io/docs/latest/develop/get-started/vector-database/)
 * [Using Redis as a vector database with OpenAI](https://cookbook.openai.com/examples/vector_databases/redis/getting-started-with-redis-and-openai)
