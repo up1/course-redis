@@ -20,3 +20,6 @@ $python step_2.py
 ```
 $python step_3.py
 ```
+
+### Reference websites
+* [Using Redis as a vector database with OpenAI](https://cookbook.openai.com/examples/vector_databases/redis/getting-started-with-redis-and-openai)
