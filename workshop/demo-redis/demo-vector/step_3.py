@@ -10,9 +10,10 @@ print(df.shape)
 print(df.head()["name"])
 
 # Embed the text using SentenceTransformer
-model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
+# Using paraphrase-multilingual-MiniLM-L12-v2 model which supports 50+ languages
+model = SentenceTransformer('sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2')
 def texts_to_embeddings(texts):
-  return [np.array(embedding, dtype=np.float32).tobytes() for embedding in model.encode(texts, show_progress_bar=True)]
+    return [np.array(embedding, dtype=np.float32).tobytes() for embedding in model.encode(texts, show_progress_bar=True)]
 
 
 df["text_embedding"] = texts_to_embeddings(df["name"].tolist())
