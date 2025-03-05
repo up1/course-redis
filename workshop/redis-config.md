@@ -6,7 +6,7 @@
 $docker container stop demo01
 $docker container rm demo01
 
-$docker container run --name demo01 -d redis:6
+$docker container run --name demo01 -d redis:7
 $docker container ps
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES
 7f0030709f52        redis:6             "docker-entrypoint.s…"   44 seconds ago      Up 43 seconds       6379/tcp            demo01
