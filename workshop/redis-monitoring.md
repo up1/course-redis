@@ -1,6 +1,7 @@
 # Redis monitoring
 1. Using Redis CLI
 2. [Redis exporter with Prometheus](https://github.com/oliver006/redis_exporter)
+3. [Grafana dashboard](https://github.com/oliver006/redis_exporter)
 
 
 # 1. Using Redis CLI
