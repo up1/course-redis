@@ -2,11 +2,11 @@ package main
 
 import (
 	"bytes"
+	"demo/handlers"
+	"demo/redis"
 	"encoding/json"
 	"net/http/httptest"
 	"testing"
-	"your-module/handlers"
-	"your-module/redis"
 )
 
 func BenchmarkSetKey(b *testing.B) {
