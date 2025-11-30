@@ -15,7 +15,7 @@ func NewRedisService() *RedisService {
 		Addr:     "localhost:6379",
 		Password: "",
 		DB:       0,
-		PoolSize: 1,
+		PoolSize: 10,
 	})
 
 	return &RedisService{Client: client}
