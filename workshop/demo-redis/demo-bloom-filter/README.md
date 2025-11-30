@@ -1,4 +1,4 @@
-# Demo with Bloom filter
+# Demo with [Bloom filter](https://redis.io/docs/latest/develop/data-types/probabilistic/bloom-filter/)
 * Check email is existed in system ?
 
 
