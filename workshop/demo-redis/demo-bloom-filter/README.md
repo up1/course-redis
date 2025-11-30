@@ -1,6 +1,8 @@
 # Demo with [Bloom filter](https://redis.io/docs/latest/develop/data-types/probabilistic/bloom-filter/)
-* Check email is existed in system ?
 
+```
+A Bloom filter is a space-efficient probabilistic data structure that quickly checks if an element is probably in a set
+```
 
 ## 1. Start Redis server
 ```
@@ -30,6 +32,7 @@ $$go run main_data_size_2.go
 
 
 ## 3. Start demo app
+* Check email is existed in system ?
 ```
 $go mod tidy
 $go run main.go
