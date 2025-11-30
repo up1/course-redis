@@ -29,13 +29,6 @@ func initRedis() {
 		DB:       0,                // Use default DB
 	})
 
-	// Working with pool settings
-	rdb.Options().PoolSize = 200                     // Maximum number of connections
-	rdb.Options().MinIdleConns = 100                 // Minimum number of idle connections
-	rdb.Options().ConnMaxIdleTime = 5 * time.Minute  // Maximum idle time
-	rdb.Options().ConnMaxLifetime = 30 * time.Minute // Maximum lifetime of a connection
-	rdb.Options().PoolTimeout = 30 * time.Second     // Maximum wait time for a connection
-
 	// Test connection
 	_, err := rdb.Ping(ctx).Result()
 	if err != nil {
