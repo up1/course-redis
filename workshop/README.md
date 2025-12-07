@@ -8,11 +8,11 @@ Required  1 nodes
 
 ```
 # Create container from Redis image
-$docker image pull redis:7
+$docker image pull redis:8
 
 
 # Run container
-$docker container run --name demo01 -d redis:7
+$docker container run --name demo01 -d redis:8
 
 $docker container ps
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES
