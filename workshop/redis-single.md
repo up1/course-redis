@@ -1,15 +1,13 @@
 # Redis Standalone mode
 * For development and testing only
 
-## Start node
+## Start Redis server
 
 ```
 # Start containers
 $docker compose -f docker-compose.single.yml up -d redis1
 
 $docker compose -f docker-compose.single.yml ps
-NAME                IMAGE     COMMAND                  SERVICE   CREATED         STATUS         PORTS
-workshop-redis1-1   redis:7   "docker-entrypoint.s…"   redis1    4 seconds ago   Up 4 seconds   6379/tcp
 ```
 
 ## Working with redis
@@ -29,23 +27,36 @@ $redis-cli
 ```
 
 ## Working with Monitoring
-* Prometheus
 * [Redis exporter](https://github.com/oliver006/redis_exporter)
+* [Prometheus](https://prometheus.io/)
+* [Grafana](https://grafana.com/)
 
 ```
 $docker compose -f docker-compose.single.yml up -d redis-exporter
 $docker compose -f docker-compose.single.yml up -d prometheus
+$docker compose -f docker-compose.single.yml up -d grafana
 
 $docker compose -f docker-compose.single.yml ps
-NAME                        IMAGE                      COMMAND                  SERVICE          CREATED          STATUS          PORTS
-workshop-prometheus-1       prom/prometheus            "/bin/prometheus --c…"   prometheus       24 seconds ago   Up 17 seconds   0.0.0.0:9090->9090/tcp
-workshop-redis-exporter-1   oliver006/redis_exporter   "/redis_exporter"        redis-exporter   32 seconds ago   Up 28 seconds   0.0.0.0:9121->9121/tcp
-workshop-redis1-1           redis:7                    "docker-entrypoint.s…"   redis1           3 minutes ago    Up 3 minutes    6379/tcp
 ```
+
+Access to prometheus exporter for Redis in web browser
+* http://localhost:9121/
 
 Access to prometheus in web browser
 * http://localhost:9090/
+  * Goto menu => Status => Target health
 
+Access to grafana in web browser
+* http://localhost:3000/
+  * user=admin
+  * password=admin
+* Add new datasource
+  * http://localhost:3000/connections/datasources
+    * Prometheus
+    * Prometheus server URL = http://prometheus:9090
+* Import [Redis dashboard](https://grafana.com/grafana/dashboards/763-redis-dashboard-for-prometheus-redis-exporter-1-x/)
+  * http://localhost:3000/dashboard/import
+    * ID=763
 
 ## Delete all resources
 ```
