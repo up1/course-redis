@@ -3,3 +3,11 @@ services:
     image: "redis:8"
     ports:
       - "6379:6379"
+  
+  demo-report:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379

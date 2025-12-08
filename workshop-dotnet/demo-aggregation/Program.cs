@@ -5,7 +5,10 @@ public class Program
     public static async Task Main(string[] args)
     {
         // NOTE: Replace with your actual Redis connection string
-        const string RedisConnString = "localhost:6379";
+        // Read redis host from environment variable or use default localhost
+        string redisHost = Environment.GetEnvironmentVariable("REDIS_HOST") ?? "localhost";
+        string redisPort = Environment.GetEnvironmentVariable("REDIS_PORT") ?? "6379";
+        string RedisConnString = $"{redisHost}:{redisPort}";
         const string CsvFilePath = "orders.csv";
 
         // 1. Run the report generator

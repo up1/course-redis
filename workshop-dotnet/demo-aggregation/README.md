@@ -1,5 +1,16 @@
 # Workshop with Order Report
 
+## 0. Order data from CSV file
+* orders.csv
+
+```
+order_id,user_id,amount,timestamp
+1001,45,50.99,2025-12-05 10:30:00
+1002,12,120.00,2025-12-05 15:45:00
+1003,90,25.50,2025-12-06 08:00:00
+1004,12,88.00,2025-12-10 12:00:00
+```
+
 ## 1. Start Redis server
 ```
 $docker compose up -d redis
@@ -17,9 +28,16 @@ $dotnet add package StackExchange.Redis
 $dotnet add package CsvHelper
 ```
 
-## 4. Run
+## 4. Run app with .NET 8
+
+Run with dotnet command
 ```
 $dotnet run
+```
+
+Run with docker
+```
+$docker compose up demo-report --build
 ```
 
 ## 5. Check data in Redis
