@@ -1,0 +1,16 @@
+services:
+  redis:
+    image: "redis:8"
+    ports:
+      - "6379:6379"
+
+  api:
+    build: ./weatherapp
+    ports:
+      - "5000:8080"
+    environment:
+      - REDIS_SERVER=redis:6379
+
+  wrk:
+    image: "ruslanys/wrk"
+    command: ["-t5", "-c100", "-d10s", "http://api:8080/WeatherForecast?latitude=38.8894&longitude=-77.0352"]
