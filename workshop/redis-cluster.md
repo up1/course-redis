@@ -2,7 +2,7 @@
 
 ## Cluster
 Required minimum nodes = 6 nodes (production)
-* Master = 3
+* Master = 3 (port=7000, 7001, 7002)
 * Slave = 3
 
 ## 1. Start Redis Node with Cluster mode
@@ -14,10 +14,10 @@ $docker compose up -d redis3
 
 $docker-compose ps
 
-NAME               IMAGE     COMMAND                  SERVICE   CREATED         STATUS         PORTS
-cluster-redis1-1   redis:7   "docker-entrypoint.s…"   redis1    8 seconds ago   Up 8 seconds   
-cluster-redis2-1   redis:7   "docker-entrypoint.s…"   redis2    6 seconds ago   Up 6 seconds   
-cluster-redis3-1   redis:7   "docker-entrypoint.s…"   redis3    4 seconds ago   Up 4 seconds   
+NAME               IMAGE     COMMAND                  SERVICE   CREATED          STATUS          PORTS
+cluster-redis1-1   redis:8   "docker-entrypoint.s…"   redis1    12 seconds ago   Up 12 seconds   0.0.0.0:7000->7000/tcp, [::]:7000->7000/tcp
+cluster-redis2-1   redis:8   "docker-entrypoint.s…"   redis2    8 seconds ago    Up 8 seconds    0.0.0.0:7001->7001/tcp, [::]:7001->7001/tcp
+cluster-redis3-1   redis:8   "docker-entrypoint.s…"   redis3    5 seconds ago    Up 4 seconds    0.0.0.0:7002->7002/tcp, [::]:7002->7002/tcp
 ```
 
 ## 2. Create cluster with replication = 0
@@ -25,7 +25,7 @@ cluster-redis3-1   redis:7   "docker-entrypoint.s…"   redis3    4 seconds ago 
 * Slave 0 nodes
 ```
 $docker compose up  -d redis-cluster
-$docker compose logs  redis-cluster
+$docker compose logs  redis-cluster -f
 
 redis-cluster_1  | >>> Performing hash slots allocation on 3 nodes...
 redis-cluster_1  | Master[0] -> Slots 0 - 5460
@@ -58,13 +58,13 @@ redis-cluster_1  | cluster_redis-cluster_1 exited with code 0
 
 $docker-compose ps
 
-NAME               IMAGE     COMMAND                  SERVICE   CREATED          STATUS          PORTS
-cluster-redis1-1   redis:7   "docker-entrypoint.s…"   redis1    20 seconds ago   Up 20 seconds   
-cluster-redis2-1   redis:7   "docker-entrypoint.s…"   redis2    18 seconds ago   Up 18 seconds   
-cluster-redis3-1   redis:7   "docker-entrypoint.s…"   redis3    17 seconds ago   Up 16 seconds   
+NAME               IMAGE     COMMAND                  SERVICE   CREATED         STATUS         PORTS
+cluster-redis1-1   redis:8   "docker-entrypoint.s…"   redis1    3 minutes ago   Up 3 minutes   0.0.0.0:7000->7000/tcp, [::]:7000->7000/tcp
+cluster-redis2-1   redis:8   "docker-entrypoint.s…"   redis2    3 minutes ago   Up 3 minutes   0.0.0.0:7001->7001/tcp, [::]:7001->7001/tcp
+cluster-redis3-1   redis:8   "docker-entrypoint.s…"   redis3    2 minutes ago   Up 2 minutes   0.0.0.0:7002->7002/tcp, [::]:7002->7002/tcp
 ```
 
-Check your cluster on node 1
+## 3. Check your cluster on node 1
 ```
 $docker container exec -it cluster-redis1-1 bash
 $redis-cli -c -p 7000
