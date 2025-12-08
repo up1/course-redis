@@ -1,8 +1,8 @@
 services:
   master:
-    image: redis:7
+    image: redis:8
   slave:
-    image: redis:7
+    image: redis:8
     command: redis-server --slaveof master 6379
   sentinel:
     build: sentinel
