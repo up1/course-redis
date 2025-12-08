@@ -10,18 +10,30 @@ $docker compose up -d redis
 $docker compose ps
 ```
 
+Access to redis
+```
+$docker compose exec -it redis bash
+$redis-cli
+```
+
 ## 2. Compare data size (Add 100,000 emails)
 * [SET](https://redis.io/docs/latest/commands/set/)
 * [BF.ADD](https://redis.io/docs/latest/commands/bf.add/)
 
 ### SET operation
 ```
-$go run main_data_size_1.go
+$docker compose down
+$docker compose up -d redis
+
+$docker compose up demo-set --build
 ```
 
 ### BF.ADD operation
 ```
-$$go run main_data_size_2.go
+$docker compose down
+$docker compose up -d redis
+
+$docker compose up demo-bloom-filter --build
 ```
 
 ### Monitor in redis-cli
@@ -31,12 +43,13 @@ $$go run main_data_size_2.go
 * INFO MEMORY 
 
 
-## 3. Start demo app
+## 3. Start demo app with Bloom filter
 * Check email is existed in system ?
 ```
-$go mod tidy
-$go run main.go
+$docker compose build api
+$docker compose up -d api
+$docker compose ps
 ```
 
 URL for testing
-* http://localhost:8080/users/emayour-email
+* http://localhost:8080/users/your-email

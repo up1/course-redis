@@ -3,3 +3,18 @@ services:
     image: redis:8
     ports:
       - "6379:6379"
+
+  demo-set:
+    build: ./
+    command: "go run /app/main_data_size_1.go"
+
+  demo-bloom-filter:
+    build: ./
+    command: "go run /app/main_data_size_2.go"
+
+  api:
+    build:
+      context: ./
+      dockerfile: Dockerfile_main
+    ports:
+      - "8080:8080"
