@@ -1,6 +1,6 @@
 # Workshop with Order Report
 * Daily/Weekly/Monthly
-* Top 10 spenders with SortedSet
+* Top 10 spenders
 
 ## 0. Order data from CSV file
 * orders.csv
@@ -20,6 +20,10 @@ order_id,user_id,amount,timestamp
 | Weekly  | report:weekly:<YYYY-WNN>  | orders / revenue | Count / Sum of Amount
 | Monthly | report:monthly:<YYYY-MM>  | orders / revenue | Count / Sum of Amount
 
+* Top 10 spenders with SortedSet
+  * Key=report:topspenders
+  * Memeber=user:<user_id>
+  * Score=order.Amount
 
 ## 1. Start Redis server
 ```
