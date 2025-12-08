@@ -1,4 +1,6 @@
 # Workshop with Order Report
+* Daily/Weekly/Monthly
+* Top 10 spenders with SortedSet
 
 ## 0. Order data from CSV file
 * orders.csv
@@ -10,6 +12,14 @@ order_id,user_id,amount,timestamp
 1003,90,25.50,2025-12-06 08:00:00
 1004,12,88.00,2025-12-10 12:00:00
 ```
+
+### Design key in Redis
+| Time Period |Redis Key (HASH) |Field (HASH)|Stored Value
+|---|---|---|---|
+| Daily   | report:daily:<YYYY-MM-DD> | orders / revenue | Count / Sum of Amount
+| Weekly  | report:weekly:<YYYY-WNN>  | orders / revenue | Count / Sum of Amount
+| Monthly | report:monthly:<YYYY-MM>  | orders / revenue | Count / Sum of Amount
+
 
 ## 1. Start Redis server
 ```
