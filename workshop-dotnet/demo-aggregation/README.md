@@ -45,6 +45,9 @@ $docker compose up demo-report --build
 $docker compose exec -it redis bash
 $redis-cli
 
+// Number of all keys
+DBSIZE
+
 // List of all keys
 keys *
 1) "report:monthly:2025-12"
@@ -57,4 +60,9 @@ keys *
 
 // Delete all keys
 FLUSHALL
+```
+
+## 6. Remove all resources
+```
+$docker compose down
 ```
