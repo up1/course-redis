@@ -1,5 +1,5 @@
 services:
-  redis1:
+  redis:
     image: redis:8
     volumes:
       - ./myredis.conf:/usr/local/etc/redis/redis.conf

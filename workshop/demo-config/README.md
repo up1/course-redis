@@ -1,5 +1,10 @@
 # Demo Redis,s configuration
 
+## Start Redis with docker + `myredis.conf`
+```
+$docker compose up -d redis
+$docker compose ps
+```
 
 ## Optimize for a read-heavy workload
 * Disable Active Defragmentation (if not needed)
