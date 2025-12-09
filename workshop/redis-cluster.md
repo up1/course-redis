@@ -1,4 +1,5 @@
-# Redis cluster = Replication + Shading data
+# Redis cluster = Replication + Sharding data
+* [Redis Cluster Specification](Redis cluster specification)
 
 ## Cluster
 Required minimum nodes = 6 nodes (production)
