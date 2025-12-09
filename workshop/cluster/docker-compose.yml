@@ -63,3 +63,11 @@ services:
     # command: bash -c "
     #    echo yes | redis-cli --cluster create redis1:7000 redis2:7001 redis3:7002 redis4:7003 redis5:7004 redis6:7005 --cluster-replicas 1      
     #   "
+
+  redis-cluster-1:
+    tty: true
+    image: redis:8
+    # network_mode: host
+    command: bash -c "
+       echo yes | redis-cli --cluster create redis1:7000 redis2:7001 redis3:7002 redis4:7003 redis5:7004 redis6:7005 --cluster-replicas 1      
+      "
