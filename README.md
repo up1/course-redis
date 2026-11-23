@@ -1,6 +1,8 @@
 ## Redis workshop
 
 ### Outline
+* New features in Redis 8.x
+* Architecture
 * Data types in Redis
   * String
   * List
