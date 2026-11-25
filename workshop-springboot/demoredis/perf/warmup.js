@@ -1,0 +1,19 @@
+// Loads every user id (1..TOTAL) into Redis through GET /api/user/{id}
+// k6 run perf/warmup.js
+import http from 'k6/http';
+import { check } from 'k6';
+import exec from 'k6/execution';
+
+const TOTAL = parseInt(__ENV.TOTAL || '1000000');
+
+export const options = {
+  scenarios: {
+    warmup: { executor: 'shared-iterations', vus: 50, iterations: TOTAL, maxDuration: '10m' },
+  },
+};
+
+export default function () {
+  const id = exec.scenario.iterationInTest + 1;
+  const res = http.get(`${__ENV.BASE_URL || 'http://localhost:8080'}/api/user/${id}`);
+  check(res, { 'status 200': (r) => r.status === 200 });
+}
