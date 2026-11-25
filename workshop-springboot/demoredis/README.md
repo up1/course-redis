@@ -46,7 +46,7 @@ curl localhost:8080/api/user/1
 
 ### Local (no Docker for the API)
 ```bash
-docker compose up -d redis postgres   # or your own Redis :6379 / PostgreSQL :5432 (db/user/password: demodb/demo/demo)
+docker compose up -d redis postgres 
 ./mvnw spring-boot:run
 ```
 
