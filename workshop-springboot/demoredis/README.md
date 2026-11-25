@@ -41,8 +41,8 @@ docker compose up -d --build
 docker compose logs -f api        # wait for "Seeded 1000000 users"
 curl localhost:8080/api/user/1
 ```
-If host ports are taken: `REDIS_HOST_PORT=16379 POSTGRES_HOST_PORT=15432 docker compose up -d --build`.
-Stop: `docker compose down` (add `-v` to also drop the PostgreSQL data volume and re-seed next time).
+- If host ports are taken: `REDIS_HOST_PORT=16379 POSTGRES_HOST_PORT=15432 docker compose up -d --build`.
+- Stop: `docker compose down` (add `-v` to also drop the PostgreSQL data volume and re-seed next time).
 
 ### Local (no Docker for the API)
 ```bash
