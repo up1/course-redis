@@ -1,4 +1,4 @@
-# demoredis – Spring Boot + Redis + PostgreSQL
+# Workshop :: Spring Boot + Redis + PostgreSQL
 
 REST API `GET user profile by id` (see [req.md](req.md)), feature-based structure:
 
