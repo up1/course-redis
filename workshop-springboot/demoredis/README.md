@@ -15,8 +15,6 @@ com.example.demoredis
 | `GET /api/user/db/{id}` | PostgreSQL only |
 | `GET /api/user/{id}` | Redis first (key `user:{id}`, TTL 10m) → on miss read PostgreSQL and populate Redis |
 
-Responses: `200` user JSON, `400 {"message":"Input invalid"}` (id not a positive number),
-`404 {"message":"User not found in system"}`, `500 {"message":"System error"}`.
 If Redis is down/slow, endpoint 2 logs a warning and falls back to PostgreSQL (no 500).
 
 ## Configuration
@@ -54,10 +52,11 @@ docker compose up -d redis postgres   # or your own Redis :6379 / PostgreSQL :54
 
 ## 2. Initial data (1,000,000 users in PostgreSQL)
 
-Nothing to do: on startup `UserDataSeeder` checks the `users` table and, if empty, inserts ids 1..1,000,000
-with one `INSERT ... SELECT FROM generate_series(1, N)` (about 2-3 s). Data lives in the `pgdata` volume, so seeding
-happens only once. Users: `id=N`, `name="User N"`, `username="userN"`, ...
-Valid ids are 1–1,000,000; anything else → 404.
+- Nothing to do: on startup `UserDataSeeder` checks the `users` table and, if empty, inserts ids 1..1,000,000
+with one `INSERT ... SELECT FROM generate_series(1, N)` (about 2-3 s).
+- Data lives in the `pgdata` volume, so seeding happens only once.
+- Users: `id=N`, `name="User N"`, `username="userN"`, ...
+- Valid ids are 1–1,000,000; anything else → 404.
 
 Quick checks:
 ```bash
@@ -86,8 +85,8 @@ docker compose exec redis redis-cli flushall                         # start fro
 k6 run perf/warmup.js
 k6 run -e PATH_PREFIX=/api/user    -e HOT_IDS=1000000 perf/load.js
 ```
-All 1M users need ~500 MB in Redis, which is why `redis.conf` allows `maxmemory 1gb` (with less, LRU eviction would break the 100% hit ratio).
-Single request: `curl -s -o /dev/null -w '%{time_total}\n' localhost:8080/api/user/1`
+- All 1M users need ~500 MB in Redis, which is why `redis.conf` allows `maxmemory 1gb` (with less, LRU eviction would break the 100% hit ratio).
+- Single request: `curl -s -o /dev/null -w '%{time_total}\n' localhost:8080/api/user/1`
 
 Result on a laptop (everything in Docker, k6 on the same machine, so indicative only):
 
@@ -98,8 +97,3 @@ Result on a laptop (everything in Docker, k6 on the same machine, so indicative 
 | PostgreSQL only, 1,000,000 ids | 2.57 ms | 4.91 ms | ~19,100 |
 | Redis + PostgreSQL, 1,000,000 ids (cold cache, mostly misses) | 3.40 ms | 5.18 ms | ~14,500 |
 | Redis + PostgreSQL, 1,000,000 ids (warm cache, 100% hits) | 2.20 ms | 3.71 ms | ~22,300 |
-
-**Reading the numbers:** with a warm cache Redis is faster on average (about 25% with 1,000 ids and 15% with all 1,000,000 ids) and clearly better at p95
-(2.94 / 3.71 ms vs 5.17 / 4.91 ms). When the cache is cold and requests are spread over the whole table, most are misses and pay PostgreSQL + a Redis read + a Redis write,
-so the cached endpoint is slower. A cache helps in proportion to the hit ratio. Gains would be larger with
-a remote database or heavier queries (here PostgreSQL is on the same machine and a primary-key lookup is very cheap).
