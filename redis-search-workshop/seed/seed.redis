@@ -1,0 +1,21 @@
+FLUSHALL
+HSET product:001 name "Wireless Noise Cancelling Headphones" brand "Sony" price 299.99 category audio rating 4.7 stock 25
+HSET product:002 name "Wireless Earbuds Pro" brand "Apple" price 249.0 category audio rating 4.6 stock 80
+HSET product:003 name "Wired Studio Headphones" brand "Audio-Technica" price 149.0 category audio rating 4.5 stock 40
+HSET product:004 name "Bluetooth Speaker Mini" brand "JBL" price 49.95 category audio rating 4.3 stock 150
+HSET product:005 name "Bluetooth Speaker Max" brand "JBL" price 179.95 category audio rating 4.5 stock 35
+HSET product:006 name "Mechanical Keyboard RGB" brand "Keychron" price 89.0 category computer rating 4.6 stock 60
+HSET product:007 name "Wireless Keyboard Slim" brand "Logitech" price 59.99 category computer rating 4.2 stock 90
+HSET product:008 name "Wireless Gaming Mouse" brand "Logitech" price 79.99 category computer rating 4.7 stock 70
+HSET product:009 name "Ergonomic Vertical Mouse" brand "Logitech" price 69.0 category computer rating 4.4 stock 45
+HSET product:010 name "USB-C Hub 7-in-1" brand "Anker" price 39.99 category computer rating 4.4 stock 200
+HSET product:011 name "27-inch 4K Monitor" brand "Dell" price 429.0 category computer rating 4.5 stock 15
+HSET product:012 name "24-inch Full HD Monitor" brand "Dell" price 139.0 category computer rating 4.3 stock 50
+HSET product:013 name "Laptop Stand Aluminum" brand "Rain Design" price 34.5 category computer rating 4.6 stock 120
+HSET product:014 name "Smart Watch Series 9" brand "Apple" price 399.0 category wearable rating 4.6 stock 30
+HSET product:015 name "Fitness Tracker Band" brand "Xiaomi" price 29.9 category wearable rating 4.2 stock 300
+HSET product:016 name "Portable Power Bank 20000mAh" brand "Anker" price 45.0 category mobile rating 4.7 stock 180
+HSET product:017 name "Wireless Charger Pad" brand "Belkin" price 25.0 category mobile rating 4.1 stock 220
+HSET product:018 name "Phone Case Rugged" brand "Spigen" price 19.99 category mobile rating 4.5 stock 500
+HSET product:019 name "Action Camera 4K" brand "GoPro" price 349.0 category camera rating 4.4 stock 20
+HSET product:020 name "Webcam Full HD" brand "Logitech" price 64.99 category camera rating 4.3 stock 85
