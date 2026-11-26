@@ -14,6 +14,12 @@ docker compose up -d            # Redis 8 on localhost:6380 (Query Engine built 
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 ```
+**No local Python?** Run each step in a container instead (first build downloads CPU torch + the BGE model, then it is cached):
+```bash
+docker compose run --rm step1
+docker compose run --rm step2 "gift for a gamer"
+docker compose run --rm step3 "cheap speaker for the beach"
+```
 Override with `REDIS_PORT=...`, `REDIS_IMAGE=...` (compose) or `REDIS_HOST/REDIS_PORT` (python).
 
 ## Files
@@ -65,6 +71,24 @@ python step3_hybrid_search.py "cheap speaker for the beach"
   `score = Σ 1/(60 + rank)`. Items found by both lists rise to the top.
   Redis 8.4+ also offers this server-side as `FT.HYBRID`.
 
+## Run all steps with docker compose
+```
+cd demo-vector-search
+docker compose build step1
+docker compose build step2
+docker compose build step3
+
+# Embed + create index
+docker compose run --rm step1  
+
+# Vector Search              
+docker compose run --rm step2 python step2_vector_search.py  "gift for a gamer"
+
+# Hybrid search
+docker compose run --rm step3 python step3_hybrid_search.py  "gift for a gamer"
+docker compose run --rm step3 python step3_hybrid_search.py  "cheap speaker for the beach"
+```
+
 ## Exercises
 1. Change `HNSW` to `FLAT`; compare results.
 2. Add a `description` to products and re-embed; does ranking improve?
@@ -75,3 +99,5 @@ python step3_hybrid_search.py "cheap speaker for the beach"
 ```bash
 docker compose down -v
 ```
+
+
