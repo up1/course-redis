@@ -1,0 +1,41 @@
+# Vector search workshop - Redis 8 ships the Query Engine (FT.*) with vector support built in.
+services:
+  redis:
+    image: ${REDIS_IMAGE:-redis:8.12}
+    container_name: workshop-vector-redis
+    ports:
+      - "${REDIS_PORT:-6380}:6379"   # 6380 so it does not clash with the other workshop (6379)
+    volumes:
+      - vector-redis-data:/data
+      - ../seed:/seed:ro
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+
+  # ---- python steps: docker compose run --rm step1 | step2 | step3 ["your query"]
+  step1: &step
+    build: .
+    profiles: ["steps"]
+    depends_on:
+      redis:
+        condition: service_healthy
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: "6379"
+      SEED_FILE: /seed/seed.redis
+    volumes:
+      - ../seed:/seed:ro
+      - hf-models:/models   # cache the BGE model between runs
+    command: ["python", "step1_embed.py"]
+  step2:
+    <<: *step
+    command: ["python", "step2_vector_search.py"]
+  step3:
+    <<: *step
+    command: ["python", "step3_hybrid_search.py"]
+
+volumes:
+  vector-redis-data:
+  hf-models:
