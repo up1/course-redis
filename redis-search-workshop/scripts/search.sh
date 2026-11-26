@@ -9,12 +9,12 @@ MIN=${2:--inf}; [ -z "$MIN" ] && MIN="-inf"
 MAX=${3:-+inf}; [ -z "$MAX" ] && MAX="+inf"
 ORDER=${4:-asc}
 
-TEXT="*"
+TEXT=""
 if [ -n "$(echo $NAME)" ]; then
-  TEXT=""
   for w in $NAME; do TEXT="$TEXT @name:$w*"; done
 fi
-QUERY="$TEXT @price:[$MIN $MAX]"
+QUERY="@price:[$MIN $MAX]"
+[ -n "$TEXT" ] && QUERY="$TEXT $QUERY"
 echo "Query: $QUERY"
 docker compose exec -T redis redis-cli FT.SEARCH idx:products "$QUERY" \
   RETURN 3 name price brand SORTBY price "$ORDER" LIMIT 0 20

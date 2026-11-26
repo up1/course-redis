@@ -106,9 +106,7 @@ FT.SEARCH idx:products "@price:[200 +inf]"        # 200 and up
 ## 6. Combine name + price (the main use case)
 
 ```
-FT.SEARCH idx:products "@name:wireless @price:[50 200]"
-  RETURN 2 name price
-  SORTBY price ASC
+FT.SEARCH idx:products "@name:wireless @price:[50 200]" RETURN 2 name price SORTBY price ASC
 ```
 
 Expected: Wireless Keyboard Slim (59.99), Wireless Gaming Mouse (79.99). Wireless Earbuds Pro (249) and the Sony headphones (299.99) are out of range.
@@ -155,6 +153,7 @@ Index updates are automatic:
 
 ```
 HSET product:021 name "Wireless Trackball Mouse" brand "Kensington" price 55 category computer rating 4.3 stock 12
+
 FT.SEARCH idx:products "@name:trackball @price:[50 60]" RETURN 2 name price
 
 HSET product:021 price 99            # price change is reflected immediately
